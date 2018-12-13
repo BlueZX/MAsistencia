@@ -24,11 +24,23 @@ if(!function_exits("ejecutarConsulta"))
     {
         global $conexion;
         $query = $conexion->query($sql);
-        $row = $query->fetch_assoc();
-        return $row;
+        $fila = $query->fetch_assoc();
+        return $fila;
     }
 
-    function ejecutarConsulta
+    function ejecutarConsulta_retornaID($sql)
+    {
+        global $conexion;
+        $query = $conexion->query($sql);
+        return $query->insert_id; // retorna la id de lo que recien se ingresa
+    }
+
+    function limpiarCadena($str)
+    {
+        global $conexion;
+        $str = mysqli_real_escape_string($conexion,trim($str)); // trim elimina los espacios de la cadena
+        return htmlspecialchars($str);
+    }
 }
 
 ?>
