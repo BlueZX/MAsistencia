@@ -35,13 +35,13 @@ class registro
 
     public function mostrar ($idregistro)
     {
-        $sql = "SELECT * FROM registro WHERE idregistro='$idregistro'"
+        $sql = "SELECT * FROM registro WHERE idregistro='$idregistro'";
         return ejecutarConsultaSimpleFila($sql); // solo se muestra la fila del id que se esta pidiendo
     }
 
     public function listar()
     {
-        $sql = "SELECT * FROM registro'"
+        $sql = "SELECT * FROM registro'";
         return ejecutarConsulta($sql); // devuelve todo lo de registro
     }
 }

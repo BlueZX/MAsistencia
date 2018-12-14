@@ -35,13 +35,13 @@ class cuadrilla
 
     public function mostrar ($idcuadrilla)
     {
-        $sql = "SELECT * FROM cuadrilla WHERE idcuadrilla='$idcuadrilla'"
+        $sql = "SELECT * FROM cuadrilla WHERE idcuadrilla='$idcuadrilla'";
         return ejecutarConsultaSimpleFila($sql); // solo se muestra la fila del id que se esta pidiendo
     }
 
     public function listar()
     {
-        $sql = "SELECT * FROM cuadrilla'"
+        $sql = "SELECT * FROM cuadrilla'";
         return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
     }
 }
