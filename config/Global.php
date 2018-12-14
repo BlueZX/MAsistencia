@@ -9,7 +9,7 @@ define("DB_NAME","MAsistencia");
 define("DB_USERNAME", "root");
 
 //Contraseña del usuario de la DB
-define("DB_PASSWORD","iit.123");
+define("DB_PASSWORD","");
 
 //definimos la codificacion de los caracteres
 define("DB_ENCODE","utf-8");
