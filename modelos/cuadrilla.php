@@ -1,7 +1,7 @@
 <?php
-require "../config/conexion.php"; // Conexion a la base de datos
+require '../config/conexion.php'; // Conexion a la base de datos
 
-class cuadrilla
+class Cuadrilla
 {
     public function _construct()
     {
@@ -41,7 +41,7 @@ class cuadrilla
 
     public function listar()
     {
-        $sql = "SELECT * FROM cuadrilla'";
+        $sql = "SELECT * FROM cuadrilla";
         return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
     }
 }

@@ -1,7 +1,7 @@
 <?php
-require "../config/conexion.php"; // Conexion a la base de datos
+require '../config/conexion.php'; // Conexion a la base de datos
 
-class registro
+class Registro
 {
     public function _construct()
     {
@@ -41,7 +41,7 @@ class registro
 
     public function listar()
     {
-        $sql = "SELECT * FROM registro'";
+        $sql = "SELECT * FROM registro";
         return ejecutarConsulta($sql); // devuelve todo lo de registro
     }
 }
