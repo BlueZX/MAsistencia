@@ -1,47 +1,41 @@
-<?php
-requiere_once "global.php";
+<?php 
+require_once "global.php";
 
-$conexion = new Mysqli(DB_HOST, DB_NAME, DB_USERNAME, DB_PASSWORD);
+$conexion = new mysqli(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 
-mysqli_query($conexion, 'SET NAME "'.DB_ENCODE.'"');
+mysqli_query( $conexion, 'SET NAMES "' . DB_ENCODE . '"');
 
-if(mysqli_connect_errno())
-{
-    printgf("Conexión fallida: %s\n",mysqli_connect_error());
+//Si tenemos un posible error en la conexion lo mostramos
+if(mysqli_connect_errno()){
+    printf("Falló conexión a la base de datos: %s\n",mysqli_connect_error());
     exit();
 }
 
-if(!function_exits("ejecutarConsulta"))
-{
-    function ejecutarConsulta($sql)
-    {
+if(!function_exists('ejecutarConsulta')){
+    function ejecutarConsulta($sql){
         global $conexion;
         $query = $conexion->query($sql);
         return $query;
     }
 
-    function ejecutarConsultaSimple($sql)
-    {
+    function ejecutarConsultaSimpleFila(){
         global $conexion;
         $query = $conexion->query($sql);
-        $fila = $query->fetch_assoc();
-        return $fila;
+        $row =$query->fetch_assoc();
+        return $row;
     }
 
-    function ejecutarConsulta_retornaID($sql)
-    {
+    function ejecutarConsulta_retornarID($sql){
         global $conexion;
         $query = $conexion->query($sql);
-        return $query->insert_id; // retorna la id de lo que recien se ingresa
+        return $conexion->insert_id;
+
     }
 
-    function limpiarCadena($str)
-    {
+    function limpiarCadena($str){
         global $conexion;
-        $str = mysqli_real_escape_string($conexion,trim($str)); // trim elimina los espacios de la cadena
+        $str = mysqli_real_escape_string($conexion,trim($str));
         return htmlspecialchars($str);
     }
 }
-
 ?>
-
