@@ -1,5 +1,5 @@
 <?php 
-require_once "global.php";
+require_once "Global.php";
 
 $conexion = new mysqli(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 
@@ -18,7 +18,7 @@ if(!function_exists('ejecutarConsulta')){
         return $query;
     }
 
-    function ejecutarConsultaSimpleFila(){
+    function ejecutarConsultaSimpleFila($sql){
         global $conexion;
         $query = $conexion->query($sql);
         $row =$query->fetch_assoc();

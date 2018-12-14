@@ -1,5 +1,5 @@
 <?php
-require '../config/conexion.php'; // Conexion a la base de datos
+require '../config/Conexion.php'; // Conexion a la base de datos
 
 class Registro
 {
