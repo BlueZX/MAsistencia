@@ -15,7 +15,7 @@ switch($_GET["op"])
     case 'guardaryeditar':
         if(empty ($idregistro)) //empty es para ver si la variable esta vacia
         {
-            $rpst = $registro->insert($fecha, $idusuario);// retornara un 1 o un 0;
+            $rpst = $registro->insertar($fecha, $idusuario);// retornara un 1 o un 0;
             echo $rpst? "Registro registrado" : "No se pudo registrar";
         }
         else
@@ -48,10 +48,11 @@ switch($_GET["op"])
         while ($reg=$rpst->fetch_object()) //fetch_object() Devuelve la fila actual de un conjunto de resultados como un objeto // recorrera el while hasta que ya no hayan mas filas.
         {
             $data[]=array(
-                "0"=>$reg->idregistro,
+                "0"=>$reg->idusuario,
                 "1"=>$reg->fecha,
-                "2"=>$reg->status,
-                "3"=>$reg->idusuario
+                "2"=>($reg->status)?'<span class="label bg-green">ASISTIO</span>':'<span class="label bg-red">NO ASISTIO</span>',
+                "3"=>($reg->status)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idregistro.')"><i class="fa fa-pencil"></i><button> ' . '<button class="btn btn-danger" onclick="noAsistir('.$reg->idregistro.')"><i class="fa fa-close"></i></button>' : 
+                '<button class="btn btn-warning" onclick="mostrar('.$reg->idregistro.')"><i class="fa fa-pencil"></i><button> ' . '<button class="btn btn-success" onclick="asistir('.$reg->idregistro.')"><i class="fa fa-check"></i></button>'
             );
         }
         $results = array(

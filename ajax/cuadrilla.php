@@ -14,7 +14,7 @@ switch ($_GET["op"])
     case 'guardaryeditar':
         if(empty ($idcuadrilla)) //empty es para ver si la variable esta vacia
         {
-            $rpst = $cuadrilla->insert($numero);// retornara un 1 o un 0;
+            $rpst = $cuadrilla->insertar($numero);// retornara un 1 o un 0;
             echo $rpst? "cuadrilla registrado" : "No se pudo registrar";
         }
         else
@@ -24,13 +24,13 @@ switch ($_GET["op"])
         }
     break;
 
-    case 'emergencia':
-        $rpst = $cuadrilla->emergencia($idcuadrilla);
+    case 'emergencias':
+        $rpst = $cuadrilla->emergencias($idcuadrilla);
         echo $rpst? "cuadrillano en emergencia" : "No se pudo cambiar el estado";
     break;
 
-    case 'noEmergencia':
-        $rpst = $cuadrilla->noEmergencia($idcuadrilla);
+    case 'noEmergencias':
+        $rpst = $cuadrilla->noEmergencias($idcuadrilla);
         echo $rpst? "cuadrilla en estado normal" : "No se pudo cambiar el estado";
     break;
 
@@ -47,9 +47,10 @@ switch ($_GET["op"])
         while ($reg=$rpst->fetch_object()) //fetch_object() Devuelve la fila actual de un conjunto de resultados como un objeto // recorrera el while hasta que ya no hayan mas filas.
         {
             $data[]=array(
-                "0"=>$reg->idcuadrilla,
-                "1"=>$reg->numero,
-                "2"=>$reg->status
+                "0"=>$reg->numero,
+                "1"=>($reg->status)?'<span class="label bg-green">NO EN EMERGENCIAS</span>':'<span class="label bg-red">EN EMERGENCIA</span>',
+                "2"=>($reg->status)? '<button class="btn btn-warning" onclick="mostrar('.$reg->idcuadrilla.')"><i class="fa fa-pencil"></i></button> ' . ' <button class="btn btn-danger" onclick="emergencias('.$reg->idcuadrilla.')"><i class="fa fa-close"></i></button>' : ' <button class="btn btn-warning" onclick="mostrar('.$reg->idcuadrilla.')"><i class="fa fa-pencil"></i></button> ' . ' <button class="btn btn-success" onclick="noEmergencias('.$reg->idcuadrilla.')"><i class="fa fa-check"></i></button>'
+                                    
             );
         }
         $results = array(

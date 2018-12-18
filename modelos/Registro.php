@@ -10,7 +10,7 @@ class Registro
 
     public function insertar($fecha, $idusuario)
     {
-        $sql = "INSERT INTO registro(fecha, status, idusuario) VALUES ('$fecha', '1', '$idusuario')";
+        $sql = "INSERT INTO registro(fecha, status, idusuario) VALUES ('$fecha', '0', '$idusuario')";
         return ejecutarConsulta($sql); 
         // retorna 0 o 1 
     }
@@ -35,7 +35,7 @@ class Registro
 
     public function mostrar ($idregistro)
     {
-        $sql = "SELECT * FROM registro WHERE idregistro='$idregistro'";
+        $sql = "SELECT * FROM registro  WHERE idregistro='$idregistro'";
         return ejecutarConsultaSimpleFila($sql); // solo se muestra la fila del id que se esta pidiendo
     }
 
