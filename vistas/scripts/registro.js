@@ -28,7 +28,7 @@ function mostrarform(flag) // si recibe un true muestra, si recibe un false esco
     {
         $("#listadoregistro").hide();
         $("#formularioregistro").show();
-        $("#btnGuardar").prop("disable",false); // cuando se muestra el formnulario registro se activa el boton guardar
+        $("#btnGuardar").prop("disabled",false); // cuando se muestra el formnulario registro se activa el boton guardar
     }
     else
     {
@@ -62,7 +62,7 @@ function listar()
             {
                 url: "../ajax/registro.php?op=listar",
                 type: "get",
-                datatype: "json",
+                dataType: "json",
 
                 // funcion de error si es que falla el llamdo ajax
                 error: function(e)
@@ -95,13 +95,13 @@ function mostrar(idregistro)
 function guardaryeditar(e)
 {
     e.preventDefault(); //intruccion jquery para indicar que no se va activar la acción predeterminada del evento
-    $("#btnGuardar").prop("disable",true);
+    $("#btnGuardar").prop("disabled",true);
     let formData= new FormData($("#formulario")[0]);
 
     $.ajax({
         url:"../ajax/registro.php?op=guardaryeditar",
         type: "POST",
-        datatype: formData,
+        data: formData,
         contentType: false,
         processData: false,
 
