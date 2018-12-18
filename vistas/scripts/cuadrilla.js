@@ -5,7 +5,7 @@ function inicio ()
     mostrarform(false);
     listar();
 
-    $("#formulario").on("submit",function(e)
+    $("#formulario").on("submit", function(e)
     {
         // mediante jquery si el formulario activa el evento submit al hacer click en el boton btnGuardar entonces llamare a la funcion guardaryeditar
         guardaryeditar(e);
@@ -16,7 +16,7 @@ function limpiar()
 {
     $("#idcuadrilla").val("");
     $("#numero").val(""); // se crea el objeto numero y le paso un valor vacio
-    $("#status").val("");
+    //$("#status").val("");
 }
 
 function mostrarform(flag) // si recibe un true muestra, si recibe un false esconde el formulario // boton agregar en las caudrillas
@@ -27,7 +27,7 @@ function mostrarform(flag) // si recibe un true muestra, si recibe un false esco
     {
         $("#listadocuadrilla").hide();
         $("#formulariocuadrilla").show();
-        $("#btnGuardar").prop("disable",false); // cuando se muestra el formnulario cuadrilla se activa el boton guardar
+        $("#btnGuardar").prop("disabled",false); // cuando se muestra el formnulario cuadrilla se activa el boton guardar
     }
     else
     {
@@ -56,7 +56,7 @@ function listar()
             {
                 url: "../ajax/cuadrilla.php?op=listar",
                 type: "get",
-                datatype: "json",
+                dataType: "json",
 
                 // funcion de error si es que falla el llamdo ajax
                 error: function(e)
@@ -75,7 +75,7 @@ function listar()
 function mostrar(idcuadrilla)
 {   
     // se le pasa a la funcion mostrar por el metodo posto idcuadrilla, y la function recibe la informacion que retorna en data
-    $.post("../ajax/cuadrilla.php?op=mostrar", {idcuadrilla : idcuadrilla}, function(data,status)
+    $.post("../ajax/cuadrilla.php?op=mostrar", {idcuadrilla : idcuadrilla}, function(data)
     {
         data = JSON.parse(data);
         mostrarform(true);
@@ -88,13 +88,13 @@ function mostrar(idcuadrilla)
 function guardaryeditar(e)
 {
     e.preventDefault(); //intruccion jquery para indicar que no se va activar la acción predeterminada del evento
-    $("#btnGuardar").prop("disable",true);
-    let formData= new FormData($("#formulario")[0]);
+    $("#btnGuardar").prop("disabled",true);
+    let formData = new FormData($("#formulario")[0]);
 
     $.ajax({
-        url:"../ajax/cuadrilla.php?op=guardaryeditar",
+        url: '../ajax/cuadrilla.php?op=guardaryeditar',
         type: "POST",
-        datatype: formData,
+        data: formData,
         contentType: false,
         processData: false,
 

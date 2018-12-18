@@ -6,7 +6,7 @@ $cuadrilla= new Cuadrilla();
 //isset()Determina si una variable está definida y no es NULL // el $_post envia la variable idcategoria (leida de la pag web) para que luego isset verifique si existe.
 $idcuadrilla= isset($_POST["idcuadrilla"])? limpiarCadena($_POST["idcuadrilla"]): "";
 $numero = isset($_POST["numero"])? limpiarCadena($_POST["numero"]): "";
-$status = isset($_POST["status"])? limpiarCadena($_POST["status"]): "";
+$status = isset($_POST["status"])? limpiarCadena($_POST["status"]): 0;
 
 //cuando hagan un llamado a este archivo ajax y le envien mediante el metodo $_GET (mediante la URL-- ajax ve por URL) una operacion, yo voy a evaluar que instruccion realizar y retorno un valor.
 switch ($_GET["op"]) 

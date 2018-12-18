@@ -10,7 +10,7 @@ class Cuadrilla
 
     public function insertar($numero)
     {
-        $sql = "INSERT INTO cuadrilla(numero, status) VALUES ('$numero', '0')";
+        $sql = "INSERT INTO cuadrilla(numero, status) VALUES ('$numero', '1')";
         return ejecutarConsulta($sql); 
         // retorna 0 o 1 
     }
@@ -23,13 +23,13 @@ class Cuadrilla
 
     public function emergencias($idcuadrilla)
     {
-        $sql = "UPDATE cuadrilla SET status ='1' WHERE idcuadrilla ='$idcuadrilla'";
+        $sql = "UPDATE cuadrilla SET status ='0' WHERE idcuadrilla ='$idcuadrilla'";
         return ejecutarConsulta($sql);
     }
 
     public function noEmergencias($idcuadrilla)
     {
-        $sql = "UPDATE cuadrilla SET status ='0' WHERE idcuadrilla ='$idcuadrilla'";
+        $sql = "UPDATE cuadrilla SET status ='1' WHERE idcuadrilla ='$idcuadrilla'";
         return ejecutarConsulta($sql);
     }
 

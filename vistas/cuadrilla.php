@@ -33,13 +33,13 @@ require 'header.php';
                     </div>
                     <div class="panel-body" style="height: 400px;" id="formulariocuadrilla">
                     <form  name= "formulario" id="formulario" method="POST" >
-                        <div class="form-gruop col-lg-6 col-med-6 col-sm-6 col-xs-12"> <!-- lg, med, sm, xs son medidad de pantallas (max=12 (total pantalla)) // Ocurre un div response -->
+                        <div class="form-group col-lg-6 col-med-6 col-sm-6 col-xs-12"> <!-- lg, med, sm, xs son medidad de pantallas (max=12 (total pantalla)) // Ocurre un div response -->
                           
                           <label>Numero</label>
                           <input type="hidden" name="idcuadrilla" id="idcuadrilla"> <!-- Cuando quiera editar una cuadrilla aqui envio el id y luego mando los datos al metodo correspondiente -->
-                          <input type="number"  name="numero" id="numero"  placeholder="Numero" required>
+                          <input type="number" name="numero" id="numero" class="form-control"  placeholder="Numero" required>
 
-                        <div class="form-gruop col-lg-12 col-med-12 col-sm-12 col-xs-12">
+                        <div class="form-group col-lg-12 col-med-12 col-sm-12 col-xs-12">
                           <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i>Guardar</button> <!--submit ya que con este boton enviare el formulario mediante un metdo ajax // etiqueta "i" para el icono del boton  -->
 
                           <button class="btn btn-danger" onclick="cancelarform()" type="button" ><i class="fa fa-arrow-circle-left"></i>Cancelar</button>
