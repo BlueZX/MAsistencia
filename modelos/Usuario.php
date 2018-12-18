@@ -7,8 +7,8 @@ Class Usuario{
     }
 
     public function insertar($nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla){
-        $sql="INSERT INTO usuario (nombre,rut,password,image,email,fechaN,direccion,numero,status,kind,idcuadrilla)
-        VALUES ('$nombre','$rut','$password','$image','$email','$fechaN','$direccion','$numero','1','$kind','$idcuadrilla')";
+        $sql="INSERT INTO `usuario`(`nombre`, `rut`, `password`, `image`, `email`, `fechaN`, `direccion`, `numero`, `status`, `kind`, `idcuadrilla`)
+        VALUES ('$nombre','$rut','$password','$image','$email','$fechaN','$direccion','$numero','$status','$kind','$idcuadrilla')";
 
         return ejecutarConsulta($sql);
     }
@@ -39,7 +39,7 @@ Class Usuario{
     }
 
     public function listar(){
-        $sql="SELECT * FROM usuario";
+        $sql="SELECT u.idusuario, u.nombre, u.rut, u.password, u.image, u.email, u.fechaN, u.direccion, u.numero, u.status, u.kind, c.numero as cuadrilla FROM usuario u INNER JOIN cuadrilla c ON u.idcuadrilla=c.idcuadrilla";
         return ejecutarConsulta($sql);
     }
 }
