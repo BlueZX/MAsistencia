@@ -148,6 +148,7 @@ switch($_GET["op"]){
             $_SESSION['nombre'] = $fetch->nombre;
             $_SESSION['image'] = $fetch->image;
             $_SESSION['rut'] = $fetch->rut;
+            $_SESSION['idcuadrilla'] = $fetch->idcuadrilla;
 
             require_once '../modelos/Registro.php';
             $registro = new Registro();

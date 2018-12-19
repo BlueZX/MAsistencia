@@ -8,7 +8,6 @@ $idregistro = isset($_POST["idregistro"])? limpiarCadena($_POST["idregistro"]): 
 $fecha = isset($_POST["fecha"])? limpiarCadena($_POST["fecha"]): "";
 $status = isset($_POST["status"])? limpiarCadena($_POST["status"]): "";
 $idusuario = isset($_POST["idusuario"])? limpiarCadena($_POST["idusuario"]): "";
-
 //cuando hagan un llamado a este archivo ajax y le envien mediante el metodo $_GET (mediante la URL-- ajax ve por URL) una operacion, yo voy a evaluar que instruccion realizar y retorno un valor.
 switch($_GET["op"])
 {
@@ -88,6 +87,34 @@ switch($_GET["op"])
             echo 'hoy ya se registro asistencia';
         }
     break;
+
+    case 'confirmar': 
+        
+        $aux = $_GET['idcuadrilla'];
+        require_once '../modelos/Cuadrilla.php';
+
+         $cuadrilla= new Cuadrilla();
+         $rpst = $cuadrilla->listarporConfirmar($aux);
+         $data2 = Array();
+
+          while($reg=$rpst->fetch_object())
+          {
+            $data2[]=array(
+            "0"=>"<img src='../files/usuarios/".$reg->image."' height='50px' width='50px'>",
+            "1"=>$reg->nombre,
+            "2"=>$reg->rut,
+            "3"=>estadoAsistencia($reg->status),
+            "4"=>estadoBotoness($reg->status,$reg->idregistro)
+             );
+          }
+        $results = array(
+            "sEcho"=>1, // Informacion para el datables
+            "iTotalRecord"=>count($data2), // enviamos el total de registros al datatable
+            "iTotalDisplayRecords"=>count($data2), //enviamos el total registros a visualizar
+            "aaData"=>$data2
+        );
+        echo json_encode($results);
+    break; 
 }
 
 function estadoAsistencia($status){
@@ -117,5 +144,20 @@ function estadoBotones($status,$idregistro){
         break;
     }
 }
+
+function estadoBotoness($status,$idregistro){
+    switch($status){
+        case 1:
+            return  '<button class="btn btn-danger" onclick="noAsistir('.$idregistro.')"><i class="fa fa-close"></i></button>';
+        break;
+        case 0:
+            return  '<button class="btn btn-success" onclick="asistir('.$idregistro.')"><i class="fa fa-check"></i></button>';
+        break;
+        case 2:
+        return '<button class="btn btn-success" onclick="asistir('.$idregistro.')"><i class="fa fa-check"></i></button>';
+        break;
+    }
+}
+
 
 ?>

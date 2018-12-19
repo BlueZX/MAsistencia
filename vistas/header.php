@@ -112,12 +112,12 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-shopping-cart"></i>
-                <span>Ventas</span>
+                <span>Tu Cuadrilla</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="venta.php"><i class="fa fa-circle-o"></i> Ventas</a></li>
-                <li><a href="cliente.php"><i class="fa fa-circle-o"></i> Clientes</a></li>
+                <li><a href="confirmar.php"><i class="fa fa-circle-o"></i> Ver por Confirmar</a></li>
+                <li><a href="emergencia.php"><i class="fa fa-circle-o"></i> Estado de Emegergencia</a></li>
               </ul>
             </li>                       
             <li class="treeview">

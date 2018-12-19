@@ -62,6 +62,8 @@ switch ($_GET["op"])
         echo json_encode($results);
     break;
 
+    
+
 
    case 'listarCuadrilla':
 
@@ -91,6 +93,8 @@ switch ($_GET["op"])
         );
         echo json_encode($results);
     break;
+
+    
 
 }
 

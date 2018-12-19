@@ -71,5 +71,7 @@ class Registro
         $sql = "SELECT * FROM registro WHERE fecha='$fecha'";
         return ejecutarConsulta($sql);
     }
+
+
 }
 ?>
