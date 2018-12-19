@@ -1,4 +1,14 @@
 <?php 
+//SE ACTIVA EL ALMACENAMIENTO EN EL BUFFER
+
+// es la funcion que permite loggear
+ob_start();
+session_start();
+
+if(!isset($_SESSION["nombre"])){
+  header("Location: login.html");
+}
+else{
 require 'header.php';
 ?>
 <!--Contenido-->
@@ -83,3 +93,9 @@ require 'footer.php';
 ?>
 
 <script type="text/javascript" src="scripts/cuadrilla.js"></script>
+
+<?php 
+}
+
+ob_end_flush();
+?>
