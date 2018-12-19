@@ -44,5 +44,13 @@ class Cuadrilla
         $sql = "SELECT *  FROM cuadrilla ";
         return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
     }
+
+    public function listarCuadrilla($idcuadrilla)
+    {
+        $sql = "SELECT u.image, u.nombre, u.rut, u.kind, r.status  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla INNER JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla'";
+        return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
+    }
+
+
 }
 ?>

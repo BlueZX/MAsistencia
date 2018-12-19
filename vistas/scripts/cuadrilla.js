@@ -1,8 +1,10 @@
-let tabla // Es una version mas moderna de var;
+let tabla; // Es una version mas moderna de var;
+let tabla2;
 
 function inicio ()
 {
     mostrarform(false);
+    $("#listadoCuadrillas").hide();
     listar();
 
     $("#formulario").on("submit", function(e)
@@ -71,6 +73,44 @@ function listar()
         }
     ).DataTable();
 }
+
+function listarCuadrilla(idcuadrilla)
+{   
+
+    
+        $("#listadocuadrilla").hide();
+        $("#listadoCuadrillas").show();
+
+        tabla2=$('#tbllistadouno').dataTable(
+            {
+                "aProcessing": true, //activamos el procesamiento de datatable
+                "aServerSide": true, // paginacion y filtrado a manos del servidor
+                dom: 'Bfrtip', //definimos los elemetos de control de la tabla
+    
+                buttons: [], // parametro requerido del datatables
+    
+                "ajax": 
+                {
+                    url: "../ajax/cuadrilla.php?op=listarCuadrilla&idcuadrilla="+idcuadrilla, // le paso a la variable que recibe con el metodo GET en ajax la idcuadrilla de la Cuadrilla LISTAR SELECIONADA despues del simbolo & y concateno con un +
+                    type: "get",
+                    dataType: "json",
+    
+                    // funcion de error si es que falla el llamdo ajax
+                    error: function(e)
+                    {
+                        console.log(e.responseText);
+                    }
+                },
+    
+                "bDestroy": true,
+                "iDisplayLength": 5, //Paginacion de 5 en 5
+                "order": [[0,"desc"]]// Ordenar (columna, order)
+            }
+        ).DataTable();
+
+}
+
+
 
 function mostrar(idcuadrilla)
 {   

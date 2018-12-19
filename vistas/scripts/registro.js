@@ -10,6 +10,13 @@ function inicio ()
         // mediante jquery si el formulario activa el evento submit al hacer click en el boton btnGuardar entonces llamare a la funcion guardaryeditar
         guardaryeditar(e);
     })
+
+    //SE CARGAN LOS ITEM DE LA CUADRILLA AL SELECT
+    $.post("../ajax/registro.php?op=selectUsuario", function(r){ // recibe lo que selectUsuario devuelve
+        $("#idusuario").html(r);
+        $("#idusuario").selectpicker('refresh');
+    });
+
 }
 
 function limpiar()
@@ -129,6 +136,20 @@ function noAsistir(idregistro)
         }
     })
 }
+
+/*function porConfirmar(idregistro)
+{   
+    bootbox.confirm("Estás seguro de cambiar el estadoa a NO ASISTIO?", function(result)
+    {
+        if(result) // Si se presiono el boton SI entonces el result sera verdadero
+        {
+            $.post("../ajax/registro.php?op=porConfirmar",{idregistro : idregistro} , function(e){
+                bootbox.alert(e);
+                tabla.ajax.reload();
+            }) // al activar el evento emengencias devuelve un string de si se logro o no cmabiar el estatus y se guarda en el parametro e
+        }
+    })
+}*/
 
 
 function asistir(idregistro)

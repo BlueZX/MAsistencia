@@ -27,6 +27,12 @@ class Registro
         return ejecutarConsulta($sql);
     }
 
+    public function porConfirmar($idregistro)
+    {
+        $sql = "'";
+        return ejecutarConsulta($sql);
+    }
+
     public function asistir ($idregistro)
     {
         $sql = "UPDATE registro SET status ='1' WHERE idregistro ='$idregistro'";
@@ -41,7 +47,7 @@ class Registro
 
     public function listar()
     {
-        $sql = "SELECT * FROM registro";
+        $sql = "SELECT u.nombre, u.rut, r.fecha, r.status, r.idregistro FROM registro r INNER JOIN usuario u ON r.idusuario=u.idusuario";
         return ejecutarConsulta($sql); // devuelve todo lo de registro
     }
 }

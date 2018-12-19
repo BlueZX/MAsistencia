@@ -48,11 +48,11 @@ switch($_GET["op"])
         while ($reg=$rpst->fetch_object()) //fetch_object() Devuelve la fila actual de un conjunto de resultados como un objeto // recorrera el while hasta que ya no hayan mas filas.
         {
             $data[]=array(
-                "0"=>$reg->idusuario,
-                "1"=>$reg->fecha,
-                "2"=>($reg->status)?'<span class="label bg-green">ASISTIO</span>':'<span class="label bg-red">NO ASISTIO</span>',
-                "3"=>($reg->status)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idregistro.')"><i class="fa fa-pencil"></i><button> ' . '<button class="btn btn-danger" onclick="noAsistir('.$reg->idregistro.')"><i class="fa fa-close"></i></button>' : 
-                '<button class="btn btn-warning" onclick="mostrar('.$reg->idregistro.')"><i class="fa fa-pencil"></i><button> ' . '<button class="btn btn-success" onclick="asistir('.$reg->idregistro.')"><i class="fa fa-check"></i></button>'
+                "0"=>$reg->nombre,
+                "1"=>$reg->rut,
+                "2"=>$reg->fecha,
+                "3"=>($reg->status)?'<span class="label bg-green">ASISTIO</span>':'<span class="label bg-red">NO ASISTIO</span>',
+                "4"=>($reg->status)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idregistro.')"><i class="fa fa-pencil"></i></button> ' . '<button class="btn btn-danger" onclick="noAsistir('.$reg->idregistro.')"><i class="fa fa-close"></i></button>' : '<button class="btn btn-warning" onclick="mostrar('.$reg->idregistro.')"><i class="fa fa-pencil"></i><button> ' . '<button class="btn btn-success" onclick="asistir('.$reg->idregistro.')"><i class="fa fa-check"></i></button>'
             );
         }
         $results = array(
@@ -62,6 +62,17 @@ switch($_GET["op"])
             "aaData"=>$data
         );
         echo json_encode($results);
+    break;
+
+    case 'selectUsuario':
+        require_once "../modelos/Usuario.php";
+        $usuario = new Usuario();
+
+        $rspta = $usuario->listar();
+
+        while($reg = $rspta->fetch_object()){
+            echo '<option value=' . $reg->idusuario . '>' . $reg->nombre . '</option>'; //el option va a mostrar las opciones relacionadas al idusuario y se mostrara el nombre del usuario.
+        }
     break;
 }
 

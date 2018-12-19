@@ -31,6 +31,30 @@ require 'header.php';
                           </tfoot>
                         </table>
                     </div>
+                    <div class="panel-body table-responsive" id="listadoCuadrillas">
+                        <table id="tbllistadouno" class="table table-striped table-bordered table-condensed table-hover">
+                          <thead>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Rut</th>
+                            <th>Tipo de trabajador</th>
+                            <th>Estado</th>
+                          </thead>
+                          <tbody></tbody>
+                          <tfoot>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Rut</th>
+                            <th>Tipo de trabajador</th>
+                            <th>Estado</th>
+                          </tfoot>
+                        </table>
+                        <div class="form-group col-lg-12 col-med-12 col-sm-12 col-xs-12">
+            
+
+                          <button class="btn btn-danger" onclick="inicio()" type="button" ><i class="fa fa-arrow-left"></i></button>
+                        </div>
+                    </div> 
                     <div class="panel-body" style="height: 400px;" id="formulariocuadrilla">
                     <form  name= "formulario" id="formulario" method="POST" >
                         <div class="form-group col-lg-6 col-med-6 col-sm-6 col-xs-12"> <!-- lg, med, sm, xs son medidad de pantallas (max=12 (total pantalla)) // Ocurre un div response -->

@@ -19,14 +19,16 @@ require 'header.php';
                     <div class="panel-body table-responsive" id="listadoregistro">
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                           <thead>
-                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Rut</th>
                             <th>Fecha</th>
                             <th>Estado</th>
                             <th>Opciones</th>
                           </thead>
                           <tbody></tbody>
                           <tfoot>
-                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Rut</th>
                             <th>Fecha</th>
                             <th>Estado</th>
                             <th>Opciones</th>
@@ -45,7 +47,7 @@ require 'header.php';
                         <div class="form-group col-lg-6 col-med-6 col-sm-6 col-xs-12"> <!-- lg, med, sm, xs son medidad de pantallas (max=12 (total pantalla)) // Ocurre un div response -->
                           
                           <label>Usuario</label>
-                          <input type="number" name="idusuario" id="idusuario"  placeholder="Usuario" required>
+                          <select name="idusuario" id="idusuario"  class="form-control selectpicker" data-live-search="true" required></select>
                         </div>
                        
                          <!-- idcategoria esta oculto asi que solo hay que ponerlo una vez al inicio. -->
