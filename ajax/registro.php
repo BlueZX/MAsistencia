@@ -74,6 +74,20 @@ switch($_GET["op"])
             echo '<option value=' . $reg->idusuario . '>' . $reg->nombre . '</option>'; //el option va a mostrar las opciones relacionadas al idusuario y se mostrara el nombre del usuario.
         }
     break;
+
+    case 'marcar':
+        $rpst = $registro->asistenciaExistente(date("Y-m-d"), $idusuario);
+
+        $fetch = $rpst->fetch_object();
+
+        if(!isset($fetch)){
+            $rpst = $registro->marcarAsistencia(date("Y-m-d"), $idusuario);// retornara un 1 o un 0;
+            echo $rpst? "se ha registrado la asistencia" : "No se pudo registrar la asistencia";
+        }
+        else{
+            echo 'hoy ya se registro asistencia';
+        }
+    break;
 }
 
 ?>

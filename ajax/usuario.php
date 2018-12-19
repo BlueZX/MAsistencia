@@ -149,6 +149,20 @@ switch($_GET["op"]){
             $_SESSION['image'] = $fetch->image;
             $_SESSION['rut'] = $fetch->rut;
 
+            require_once '../modelos/Registro.php';
+            $registro = new Registro();
+            
+            $rspta = $usuario->listar();
+
+            while($reg=$rspta->fetch_object()){
+                $rspt = $registro->registroHoyUser(date("Y-m-d"),$reg->idusuario);
+
+                $fet = $rspt->fetch_object();
+
+                if(!isset($fet)){
+                    $registro->insertar(date("Y-m-d"),$reg->idusuario);
+                }
+            }
         }
         echo json_encode($fetch);
     break;

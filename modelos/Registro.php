@@ -50,5 +50,26 @@ class Registro
         $sql = "SELECT u.nombre, u.rut, r.fecha, r.status, r.idregistro FROM registro r INNER JOIN usuario u ON r.idusuario=u.idusuario";
         return ejecutarConsulta($sql); // devuelve todo lo de registro
     }
+
+    public function marcarAsistencia($fecha, $idusuario){
+        $sql = "UPDATE registro SET status ='1' WHERE fecha='$fecha' AND idusuario='$idusuario'";
+        //"INSERT INTO registro(fecha, status, idusuario) VALUES ('$fecha', '1', '$idusuario')";
+        return ejecutarConsulta($sql);
+    }
+
+    public function asistenciaExistente($fecha, $idusuario){
+        $sql = "SELECT * FROM registro WHERE fecha='$fecha' AND idusuario='$idusuario' AND status='1'";
+        return ejecutarConsulta($sql);
+    }
+
+    public function registroHoyUser($fecha, $idusuario){
+        $sql = "SELECT * FROM registro WHERE fecha='$fecha' AND idusuario='$idusuario'";
+        return ejecutarConsulta($sql);
+    }
+
+    public function registrosDeHoy($fecha){
+        $sql = "SELECT * FROM registro WHERE fecha='$fecha'";
+        return ejecutarConsulta($sql);
+    }
 }
 ?>
