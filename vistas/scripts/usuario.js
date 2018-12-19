@@ -16,6 +16,11 @@ function init(){
     });
     $("#imagenmuestra").hide();
 
+    //SE MUESTRAN LOS PERMISOS
+    $.post("../ajax/usuario.php?op=permisos&id=", function(r){
+        $("#permisos").html(r);
+    });
+
 }
 
 
@@ -31,6 +36,8 @@ function limpiar(){
     $("#direccion").val(""); 
     $("#kind").val(""); 
     $("#email").val(""); 
+    $("#imagenmuestra").attr("src","../files/usuarios/no-image.png");
+    $("#imagenactual").val("");
 }
 
 function mostrarform(flag){
@@ -119,6 +126,10 @@ function mostrar(idusuario){
         $("#imagenmuestra").attr("src","../files/usuarios/"+data.image);
         $("#imagenactual").val(data.image);
 
+    });
+
+    $.post("../ajax/usuario.php?op=permisos&id="+idusuario, function(r){
+        $("#permisos").html(r);
     });
 }
 

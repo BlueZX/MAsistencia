@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ITVentas | www.incanatoit.com</title>
+    <title>CeF</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -33,9 +33,9 @@
         <!-- Logo -->
         <a href="index2.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>IT</b>Ventas</span>
+          <span class="logo-mini">Sistema Asistencia</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>ITVentas</b></span>
+          <span class="logo-lg"><b>Sistema Asistencia</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -52,13 +52,13 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="../public/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Juan Carlos Arcila</span>
+                  <img src="../files/usuarios/<?php echo $_SESSION['image'];?>" class="user-image" alt="User Image">
+                  <span class="hidden-xs"><?php echo $_SESSION['nombre'];?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="../public/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="../files/usuarios/<?php echo $_SESSION['image'];?>" class="img-circle" alt="User Image">
                     <p>
                       www.incanatoit.com - Desarrollando Software
                       <small>www.youtube.com/jcarlosad7</small>
@@ -69,7 +69,7 @@
                   <li class="user-footer">
                     
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
+                      <a href="../ajax/usuario.php?op=salir" class="btn btn-default btn-flat">Cerrar</a>
                     </div>
                   </li>
                 </ul>
@@ -128,13 +128,13 @@
             </li>                       
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Acceso</span>
+                <i class="fa fa-folder"></i> <span>Mantenedores</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="usuario.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                <li><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>
-                
+                <li><a href="registro.php"><i class="fa fa-circle-o"></i> Registros</a></li>
+                <li><a href="cuadrilla.php"><i class="fa fa-circle-o"></i> Cuadrilla</a></li>
               </ul>
             </li>
             <li class="treeview">

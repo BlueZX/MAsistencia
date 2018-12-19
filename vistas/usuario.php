@@ -1,4 +1,13 @@
 <?php 
+//SE ACTIVA EL ALMACENAMIENTO EN EL BUFFER
+ob_start();
+session_start();
+
+if(!isset($_SESSION["nombre"])){
+  header("Location: login.html");
+}
+else{
+
 require 'header.php';
 ?>
 <!--Contenido-->
@@ -68,7 +77,7 @@ require 'header.php';
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label for="password">Contraseña:</label>
-                            <input type="text" name="password" id="password" class="form-control" maxLength="25" placeholder="contraseña" required>
+                            <input type="password" name="password" id="password" class="form-control" maxLength="64" placeholder="contraseña" required>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label for="direccion">Dirección:</label>
@@ -98,6 +107,12 @@ require 'header.php';
                               <option value=3>Jefe de base</option>
                             </select>
                           </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label for="permisos">Permisos:</label>
+                            <ul style="list-style: none;" id="permisos">
+                              
+                            </ul>
+                          </div>
                           <div class="from-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <button class="btn btn-primary" id="btnGuardar" type="submit"><i class="fa fa-save"></i> Guardar</button>
                             <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
@@ -117,3 +132,10 @@ require 'footer.php';
 ?>
 
 <script type="text/javascript" src="scripts/usuario.js"></script>
+
+
+<?php 
+}
+
+ob_end_flush();
+?>

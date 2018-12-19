@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../modelos/Usuario.php";
 
 $usuario = new Usuario();
@@ -30,13 +31,16 @@ switch($_GET["op"]){
             }
         }
 
+        //Hash SHA256 en el pass
+        $clavehash=hash("SHA256",$password);
+
         if (empty($idusuario)){
-            $rspta=$usuario->insertar($nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla);
-            echo $rspta ? "Usuario registrado": "Usuario no se pudo registrar";
+            $rspta=$usuario->insertar($nombre,$rut,$clavehash,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $_POST['permiso']);
+            echo $rspta ? "Usuario registrado": "No se pudo registrar todos los datos del usuario";
 
         }
         else{
-            $rspta=$usuario->editar($idusuario,$nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla);
+            $rspta=$usuario->editar($idusuario,$nombre,$rut,$clavehash,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $_POST['permiso']);
             echo $rspta ? "Usuario actualizado": "Usuario no se pudo actualizar";
         }
     break;
@@ -86,6 +90,29 @@ switch($_GET["op"]){
 
         echo json_encode($results);
     break;
+
+    case 'permisos':
+        //Se obtienen todos los permisos de la tabla permisos
+        require_once '../modelos/Permiso.php';
+        $permiso = new Permiso();
+        $rspta = $permiso->listar();
+
+        //SE OBTIENEN PERMISOS ASIGNADO AL USUARIO
+        $id = $_GET['id'];
+        $marcados = $usuario->listarMarcados($id);
+        $valores = array();
+
+        while($per = $marcados->fetch_object()){
+            array_push($valores, $per->idpermiso);
+        }
+
+        //SE MUESTRA LA LISTA DE PERMISOS EN LA VISTA
+        while($reg = $rspta->fetch_object()){
+            $sw = in_array($reg->idpermiso,$valores)? 'checked':'';
+            echo '<li><input type="checkbox" name="permiso[]" value="'. $reg->idpermiso .'"' . $sw . ' > ' . $reg->nombre . '</li>';
+        }
+    break;
+
     case 'mostrar':
         $rspta = $usuario->mostrar($idusuario);
 
@@ -103,6 +130,36 @@ switch($_GET["op"]){
             echo '<option value=' . $reg->idcuadrilla . '>' . $reg->numero . '</option>';
         }
     break;
+
+    case 'verificar':
+        $rut_a = $_POST['rut_a'];
+        $pass_a = $_POST['pass_a'];
+
+        //HASH SHA256 EN EL PASS
+        $pass_hash = hash("SHA256",$pass_a);
+
+        $rspta = $usuario->verificar($rut_a, $pass_hash);
+
+        $fetch = $rspta->fetch_object();
+
+        if(isset($fetch)){
+            //SE DECLARAN VARIABLES DE SESSION
+            $_SESSION['idusuario'] = $fetch->idusuario;
+            $_SESSION['nombre'] = $fetch->nombre;
+            $_SESSION['image'] = $fetch->image;
+            $_SESSION['rut'] = $fetch->rut;
+
+        }
+        echo json_encode($fetch);
+    break;
+    case 'salir':
+        session_unset();
+
+        session_destroy();
+
+        header("Location: ../index.php");
+    break;
+
     default:
     break;
 }
