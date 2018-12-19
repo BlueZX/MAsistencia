@@ -25,6 +25,12 @@ Class Usuario{
             $num_elementos++;
         }
 
+        $aux = date("Y-m-d"); 
+
+        $sql_registro = "INSERT INTO registro(fecha, status, idusuario) VALUES ('$aux', '0', '$idusuarionew')";
+        ejecutarConsulta($sql_registro);
+
+
         return $sw;
     }
 
