@@ -29,7 +29,7 @@ class Registro
 
     public function porConfirmar($idregistro)
     {
-        $sql = "'";
+        $sql = "UPDATE registro SET status ='2' WHERE idregistro ='$idregistro'";
         return ejecutarConsulta($sql);
     }
 
@@ -52,13 +52,13 @@ class Registro
     }
 
     public function marcarAsistencia($fecha, $idusuario){
-        $sql = "UPDATE registro SET status ='1' WHERE fecha='$fecha' AND idusuario='$idusuario'";
+        $sql = "UPDATE registro SET status ='2' WHERE fecha='$fecha' AND idusuario='$idusuario'";
         //"INSERT INTO registro(fecha, status, idusuario) VALUES ('$fecha', '1', '$idusuario')";
         return ejecutarConsulta($sql);
     }
 
     public function asistenciaExistente($fecha, $idusuario){
-        $sql = "SELECT * FROM registro WHERE fecha='$fecha' AND idusuario='$idusuario' AND status='1'";
+        $sql = "SELECT * FROM registro WHERE fecha='$fecha' AND idusuario='$idusuario' AND (status='1' OR status='2') ";
         return ejecutarConsulta($sql);
     }
 

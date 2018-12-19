@@ -51,8 +51,8 @@ switch($_GET["op"])
                 "0"=>$reg->nombre,
                 "1"=>$reg->rut,
                 "2"=>$reg->fecha,
-                "3"=>($reg->status)?'<span class="label bg-green">ASISTIO</span>':'<span class="label bg-red">NO ASISTIO</span>',
-                "4"=>($reg->status)?'<button class="btn btn-warning" onclick="mostrar('.$reg->idregistro.')"><i class="fa fa-pencil"></i></button> ' . '<button class="btn btn-danger" onclick="noAsistir('.$reg->idregistro.')"><i class="fa fa-close"></i></button>' : '<button class="btn btn-warning" onclick="mostrar('.$reg->idregistro.')"><i class="fa fa-pencil"></i><button> ' . '<button class="btn btn-success" onclick="asistir('.$reg->idregistro.')"><i class="fa fa-check"></i></button>'
+                "3"=>estadoAsistencia($reg->status),
+                "4"=>estadoBotones($reg->status,$reg->idregistro)
             );
         }
         $results = array(
@@ -88,6 +88,34 @@ switch($_GET["op"])
             echo 'hoy ya se registro asistencia';
         }
     break;
+}
+
+function estadoAsistencia($status){
+    switch($status){
+        case 1:
+            return '<span class="label bg-green">ASISTIO</span>';
+        break;
+        case 0:
+            return '<span class="label bg-red">NO ASISTIO</span>';
+        break;
+        case 2:
+            return '<span class="label bg-yellow">POR CONFIRMAR</span>';
+        break;
+    }
+}
+
+function estadoBotones($status,$idregistro){
+    switch($status){
+        case 1:
+            return '<button class="btn btn-warning" onclick="mostrar('.$idregistro.')"><i class="fa fa-pencil"></i></button> ' . '<button class="btn btn-danger" onclick="noAsistir('.$idregistro.')"><i class="fa fa-close"></i></button>';
+        break;
+        case 0:
+            return '<button class="btn btn-warning" onclick="mostrar('.$idregistro.')"><i class="fa fa-pencil"></i></button> ' . '<button class="btn btn-success" onclick="asistir('.$idregistro.')"><i class="fa fa-check"></i></button>';
+        break;
+        case 2:
+        return '<button class="btn btn-warning" onclick="mostrar('.$idregistro.')"><i class="fa fa-pencil"></i></button> ' . '<button class="btn btn-success" onclick="asistir('.$idregistro.')"><i class="fa fa-check"></i></button>';
+        break;
+    }
 }
 
 ?>
