@@ -73,7 +73,7 @@ require 'header.php';
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label for="rut">Rut:</label>
-                            <input type="text" name="rut" id="rut" class="form-control" maxLength="12" placeholder="ejem: 12.123.123-2" required>
+                            <input type="text" name="rut" id="rut" oninput="checkRut(this)" class="form-control" maxLength="12" placeholder="ejem: 12.123.123-2" required>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label for="password">Contraseña:</label>

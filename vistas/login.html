@@ -22,6 +22,67 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script>
+      function valida(e){
+          tecla = (document.all) ? e.keyCode : e.which;
+          //Tecla de retroceso para borrar, siempre la permite
+          if (tecla==8){
+              return true;
+          }
+              
+          // Patron de entrada, en este caso solo acepta numeros
+          patron =/[0-9]/;
+          tecla_final = String.fromCharCode(tecla);
+          return patron.test(tecla_final);
+      }
+      function checkRut(rut) {
+    // Despejar Puntos
+    var valor = rut.value.replace('.','');
+    // Despejar Guión
+    valor = valor.replace('-','');
+    
+    // Aislar Cuerpo y Dígito Verificador
+    cuerpo = valor.slice(0,-1);
+    dv = valor.slice(-1).toUpperCase();
+    
+    // Formatear RUN
+    rut.value = cuerpo + '-'+ dv
+
+    // Si no cumple con el mínimo ej. (n.nnn.nnn)
+    if(cuerpo.length < 7) { rut.setCustomValidity("RUT Incompleto"); return false;}
+    
+    // Calcular Dígito Verificador
+    suma = 0;
+    multiplo = 2;
+    
+    // Para cada dígito del Cuerpo
+    for(i=1;i<=cuerpo.length;i++) {
+    
+        // Obtener su Producto con el Múltiplo Correspondiente
+        index = multiplo * valor.charAt(cuerpo.length - i);
+        
+        // Sumar al Contador General
+        suma = suma + index;
+        
+        // Consolidar Múltiplo dentro del rango [2,7]
+        if(multiplo < 7) { multiplo = multiplo + 1; } else { multiplo = 2; }
+  
+    }
+    
+    // Calcular Dígito Verificador en base al Módulo 11
+    dvEsperado = 11 - (suma % 11);
+    
+    // Casos Especiales (0 y K)
+    dv = (dv == 'K')?10:dv;
+    dv = (dv == 0)?11:dv;
+    
+    // Validar que el Cuerpo coincide con su Dígito Verificador
+    if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }
+    
+    // Si todo sale bien, eliminar errores (decretar que es válido)
+    rut.setCustomValidity('');
+    }
+</script>
   </head>
   <body class="hold-transition login-page" style="background-image:url(../public/images/Login-Background.jpg); -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">
     <div class="login-box">
@@ -32,11 +93,11 @@
         <p class="login-box-msg">Ingrese sus datos de Acceso</p>
         <form method="post" id="frmAcceso">
           <div class="form-group has-feedback">
-            <input type="text" id="rut_a" name="rut_a" class="form-control" placeholder="Rut">
+            <input type="text"  oninput="checkRut(this)" id="rut_a" name="rut_a" class="form-control" placeholder="Rut" required>
             <span class="fa fa-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
-            <input type="password" id="pass_a" name="pass_a" class="form-control" placeholder="Contraseña">
+            <input type="password" id="pass_a" name="pass_a" class="form-control" placeholder="Contraseña" required>
             <span class="fa fa-key form-control-feedback"></span>
           </div>
           <div class="row">
@@ -63,5 +124,6 @@
     <script src="../public/js/bootbox.min.js"></script>
 
     <script src="scripts/login.js"></script>
+    <script src="scripts/validarut.js"></script>
   </body>
 </html>
