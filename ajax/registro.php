@@ -87,6 +87,19 @@ switch($_GET["op"])
             echo 'hoy ya se registro asistencia';
         }
     break;
+    case 'cancelarMarcar':
+        $rpst = $registro->asistenciaExistente(date("Y-m-d"), $idusuario);
+
+        $fetch = $rpst->fetch_object();
+
+        if(isset($fetch)){
+            $rpst = $registro->cancelarAsistencia(date("Y-m-d"), $idusuario);// retornara un 1 o un 0;
+            echo $rpst? "se ha cancelado la asistencia" : "No se pudo cancelar la asistencia";
+        }
+        else{
+            echo 'no posee asistencia para cancelar';
+        }
+    break;
 
     case 'confirmar': 
         

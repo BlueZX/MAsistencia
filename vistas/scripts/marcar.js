@@ -3,3 +3,9 @@ function asisti(idusuario){
         bootbox.alert(e);
     });
 }
+
+function cancelarAsistencia(idusuario){
+    $.post("../ajax/registro.php?op=cancelarMarcar",{idusuario:idusuario}, function(e){
+        bootbox.alert(e);
+    });
+}

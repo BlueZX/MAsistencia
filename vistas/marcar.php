@@ -32,7 +32,7 @@ require 'header.php';
                             <button class="btn btn-success center-block" onclick="asisti(<?php echo $id; ?>)" style="padding:50px 150px; margin: 10px;" >Marcar</button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <button class="btn btn-danger center-block" onclick="asisti(<?php echo $id; ?>)" style="padding:50px 150px; margin: 10px;" disabled>Cancelar</button>
+                            <button class="btn btn-danger center-block" onclick="cancelarAsistencia(<?php echo $id; ?>)" style="padding:50px 150px; margin: 10px;">Cancelar</button>
                         </div>
                     </div>
                     <!--Fin centro -->

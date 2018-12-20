@@ -57,6 +57,12 @@ class Registro
         return ejecutarConsulta($sql);
     }
 
+    public function cancelarAsistencia($fecha, $idusuario){
+        $sql = "UPDATE registro SET status ='0' WHERE fecha='$fecha' AND idusuario='$idusuario'";
+        //"INSERT INTO registro(fecha, status, idusuario) VALUES ('$fecha', '1', '$idusuario')";
+        return ejecutarConsulta($sql);
+    }
+
     public function asistenciaExistente($fecha, $idusuario){
         $sql = "SELECT * FROM registro WHERE fecha='$fecha' AND idusuario='$idusuario' AND (status='1' OR status='2') ";
         return ejecutarConsulta($sql);
