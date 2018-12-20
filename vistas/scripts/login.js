@@ -10,7 +10,7 @@ $("#frmAcceso").on('submit',function(e){
     {"rut_a":rut_a,"pass_a":pass_a},
     function(data){
         if(data!="null"){
-            $(location).attr("href","usuario.php");
+            $(location).attr("href","escritorio.php");
         }
         else{
             bootbox.alert("Usuario y/o contraseña incorrectos");
