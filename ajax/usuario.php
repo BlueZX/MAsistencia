@@ -16,6 +16,7 @@ $numero=isset($_POST["numero"]) ? limpiarCadena($_POST["numero"]):"";
 $status=isset($_POST["status"]) ? limpiarCadena($_POST["status"]):1;
 $kind=isset($_POST["kind"]) ? limpiarCadena($_POST["kind"]):1;
 $idcuadrilla=isset($_POST["idcuadrilla"]) ? limpiarCadena($_POST["idcuadrilla"]):1;
+$permisos=isset($_POST['permiso']) ? $_POST['permiso']:[];
 
 switch($_GET["op"]){
     case 'guardaryeditar':
@@ -35,12 +36,12 @@ switch($_GET["op"]){
         $clavehash=hash("SHA256",$password);
 
         if (empty($idusuario)){
-            $rspta=$usuario->insertar($nombre,$rut,$clavehash,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $_POST['permiso']);
+            $rspta=$usuario->insertar($nombre,$rut,$clavehash,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $permisos);
             echo $rspta ? "Usuario registrado": "No se pudo registrar todos los datos del usuario";
 
         }
         else{
-            $rspta=$usuario->editar($idusuario,$nombre,$rut,$clavehash,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $_POST['permiso']);
+            $rspta=$usuario->editar($idusuario,$nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $permisos);
             echo $rspta ? "Usuario actualizado": "Usuario no se pudo actualizar";
         }
     break;
@@ -149,6 +150,20 @@ switch($_GET["op"]){
             $_SESSION['image'] = $fetch->image;
             $_SESSION['rut'] = $fetch->rut;
             $_SESSION['idcuadrilla'] = $fetch->idcuadrilla;
+            $_SESSION['kind'] = $fetch->kind;
+            
+            $marcados = $usuario->listarMarcados($fetch->idusuario);
+
+            $valores = array();
+
+            while($per = $marcados->fetch_object()){
+                array_push($valores, $per->idpermiso);
+            }
+
+            in_array(1,$valores)? $_SESSION['escritorio']=1:$_SESSION['escritorio']=0;
+            in_array(2,$valores)? $_SESSION['mantenedores']=1:$_SESSION['mantenedores']=0;
+            in_array(3,$valores)? $_SESSION['masistencia']=1:$_SESSION['masistencia']=0;
+            in_array(4,$valores)? $_SESSION['tucuadrilla']=1:$_SESSION['tucuadrilla']=0; 
 
             require_once '../modelos/Registro.php';
             $registro = new Registro();

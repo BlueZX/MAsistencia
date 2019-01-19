@@ -7,6 +7,10 @@ Class Usuario{
     }
 
     public function insertar($nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla,$permisos){
+        if($kind > 2){
+            $idcuadrilla = 0;
+        }
+
         $sql="INSERT INTO `usuario`(`nombre`, `rut`, `password`, `image`, `email`, `fechaN`, `direccion`, `numero`, `status`, `kind`, `idcuadrilla`)
         VALUES ('$nombre','$rut','$password','$image','$email','$fechaN','$direccion','$numero','$status','$kind','$idcuadrilla')";
 
@@ -16,6 +20,10 @@ Class Usuario{
         $num_elementos = 0;
 
         $sw = true;
+
+        if(empty($permisos)){
+            $permisos = [];
+        }
 
         while($num_elementos < count($permisos)){
             $sql_detalle = "INSERT INTO usuario_permiso(idusuario,idpermiso) VALUES('$idusuarionew', '$permisos[$num_elementos]')";
@@ -35,6 +43,10 @@ Class Usuario{
     }
 
     public function editar($idusuario,$nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla,$permisos){
+        if($kind > 2){
+            $idcuadrilla = 0;
+        }
+
         $sql = "UPDATE usuario SET nombre='$nombre', rut='$rut',password='$password',image='$image',email='$email',fechaN='$fechaN',direccion='$direccion',numero='$numero',status='$status',kind='$kind',idcuadrilla='$idcuadrilla'
         WHERE idusuario='$idusuario'";
 
@@ -48,6 +60,10 @@ Class Usuario{
         $num_elementos = 0;
 
         $sw = true;
+
+        if(empty($permisos)){
+            $permisos = [];
+        }
 
         while($num_elementos < count($permisos)){
             $sql_detalle = "INSERT INTO usuario_permiso(idusuario,idpermiso) VALUES('$idusuario', '$permisos[$num_elementos]')";

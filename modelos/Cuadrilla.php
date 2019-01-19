@@ -47,7 +47,8 @@ class Cuadrilla
 
     public function listarCuadrilla($idcuadrilla)
     {
-        $sql = "SELECT u.image, u.nombre, u.rut, u.kind, r.status  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla LEFT JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla'";
+        $fecha_hoy = date('Y') . "-" . date('m') . "-" . date('d');
+        $sql = "SELECT u.image, u.nombre, u.rut, u.kind, r.status  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla INNER JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla' AND r.fecha='$fecha_hoy' ORDER BY u.kind DESC";
         return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
     }
 

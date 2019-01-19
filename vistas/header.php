@@ -1,3 +1,8 @@
+<?php 
+if(strlen(session_id()) < 1)
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -23,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="../public/datatables/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="../public/datatables/responsive.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
+
+    <link rel="stylesheet" href="../public/css/custom.css">
     <script>
       function valida(e){
           tecla = (document.all) ? e.keyCode : e.which;
@@ -147,38 +154,62 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header"></li>
-            <li>
-              <a href="escritorio.php">
-                <i class="fa fa-tasks"></i> <span>Escritorio</span>
-              </a>
-            </li>
-            <li>
-              <a href="marcar.php">
-                <i class="fa fa-laptop"></i> <span>Marcar Asistencia</span>
-              </a>
-            </li>            
+            <?php 
+            if($_SESSION ['escritorio']==1){
+              echo '<li>
+                      <a href="escritorio.php">
+                        <i class="fa fa-tasks"></i> <span>Escritorio</span>
+                      </a>
+                    </li>';
+            }
+            ?>
 
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-child"></i>
-                <span>Tu Cuadrilla</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="confirmar.php"><i class="fa fa-circle-o"></i> Ver por Confirmar</a></li>
-                <li><a href="emergencia.php"><i class="fa fa-circle-o"></i> Estado de Emegergencia</a></li>
-              </ul>
-            </li>                       
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span>Mantenedores</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="usuario.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                <li><a href="registro.php"><i class="fa fa-circle-o"></i> Registros</a></li>
-                <li><a href="cuadrilla.php"><i class="fa fa-circle-o"></i> Cuadrilla</a></li>
-              </ul>
+            <?php 
+            if($_SESSION ['masistencia']==1){
+              echo '<li>
+                      <a href="marcar.php">
+                        <i class="fa fa-laptop"></i> <span>Marcar Asistencia</span>
+                      </a>
+                    </li>';
+            }
+            ?>
+
+            <?php 
+            if($_SESSION ['tucuadrilla']==1){
+              echo '<li class="treeview">
+                      <a href="#">
+                        <i class="fa fa-child"></i>
+                        <span>Tu Cuadrilla</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                        <li><a href="confirmar.php"><i class="fa fa-circle-o"></i> Ver por Confirmar</a></li>
+                        <li><a href="emergencia.php"><i class="fa fa-circle-o"></i> Estado de Emegergencia</a></li>
+                      </ul>
+                    </li> ';
+            }
+            ?>
+
+            <?php 
+            if($_SESSION ['mantenedores']==1){
+              echo '<li class="treeview">
+                      <a href="#">
+                        <i class="fa fa-folder"></i> <span>Mantenedores</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </a>
+                      <ul class="treeview-menu">
+                        <li><a href="usuario.php"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                        <li><a href="registro.php"><i class="fa fa-circle-o"></i> Registros</a></li>
+                        <li><a href="cuadrilla.php"><i class="fa fa-circle-o"></i> Cuadrilla</a></li>
+                      </ul>
+                    </li>';
+            }
+            ?>
+
+         
+
+                                  
+            
             <!--<li>
               <a href="#">
                 <i class="fa fa-info-circle"></i> <span>Acerca De...</span>

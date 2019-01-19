@@ -78,6 +78,11 @@ class Registro
         return ejecutarConsulta($sql);
     }
 
+    public function asistenciaultimos_15dias($idusuario){
+        $sql="SELECT r.fecha, r.status FROM `registro` r WHERE r.idusuario = '$idusuario' ORDER BY fecha asc limit 0,30";
+        return ejecutarConsulta($sql);
+    }
+
 
 }
 ?>

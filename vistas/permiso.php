@@ -1,5 +1,14 @@
 <?php 
+//SE ACTIVA EL ALMACENAMIENTO EN EL BUFFER
+ob_start();
+session_start();
+
+if(!isset($_SESSION["nombre"])){
+  header("Location: login.html");
+}
+else{
 require 'header.php';
+
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -40,3 +49,9 @@ require 'footer.php';
 ?>
 
 <script type="text/javascript" src="scripts/permiso.js"></script>
+
+<?php 
+}
+
+ob_end_flush();
+?>

@@ -8,6 +8,10 @@ if(!isset($_SESSION["nombre"])){
 }
 else{
 require 'header.php';
+
+if($_SESSION['mantenedores']==1){
+
+
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -75,6 +79,10 @@ require 'header.php';
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->
 <?php 
+}
+else{
+  require 'noacceso.php';
+}
 require 'footer.php';
 ?>
 
