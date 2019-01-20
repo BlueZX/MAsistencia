@@ -54,9 +54,15 @@ class Cuadrilla
 
     public function listarporConfirmar($idcuadrilla)
     {
-        $sql = "SELECT u.image, u.nombre, u.rut, u.kind, r.status, r.idregistro  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla LEFT JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla' AND r.status='2'";
+        $sql = "SELECT u.image, u.nombre, u.rut, u.kind, r.status, r.idregistro  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla LEFT JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla' AND r.status='2' AND u.kind='1'";
         return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
     }
+
+    public function listarporConfirmarJefeCuadrilla($id){
+        $sql = "SELECT u.image, u.nombre, u.rut, u.kind, r.status, r.idregistro  FROM usuario u LEFT JOIN registro r ON r.idusuario=u.idusuario WHERE u.idjefebase='$id' AND r.status='2' AND u.kind='2'";
+        return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
+    }
+
 
 
 }

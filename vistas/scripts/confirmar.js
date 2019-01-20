@@ -1,5 +1,5 @@
 let tabla;
-function confirmar(idcuadrilla)
+function confirmar(idcuadrilla,kind,id)
 {
     $("#UsuariosPorConfirmar").show();
     tabla=$('#tbllistado').dataTable(
@@ -12,7 +12,7 @@ function confirmar(idcuadrilla)
 
         "ajax":
         {
-            url: "../ajax/registro.php?op=confirmar&idcuadrilla="+idcuadrilla,
+            url: "../ajax/registro.php?op=confirmar&idcuadrilla="+idcuadrilla+"&tipo="+kind+"&id="+id,
             type: "get",
             dataType: "json",
 
@@ -43,4 +43,4 @@ function asistir(idregistro)
     })
 }
 
-confirmar($("#idcuadrilla").val());
+confirmar($("#idcuadrilla").val(),$("#tipo").val(),$("#idj").val());

@@ -100,6 +100,10 @@ require 'header.php';
                             <select name="idcuadrilla" id="idcuadrilla" class="form-control selectpicker" data-live-search="true"></select>
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <label for="jefebase">Jefe de base:</label>
+                            <select name="idjefebase" id="idjefebase" class="form-control selectpicker" data-live-search="true"></select>
+                          </div>
+                          <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <label for="kind">Tipo de usuario:</label>
                             <select name="kind" id="kind" class="form-control selectpicker" data-live-search="true">
                               <option value=1 selected>Brigadista</option>

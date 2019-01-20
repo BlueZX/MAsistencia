@@ -120,6 +120,15 @@ switch($_GET["op"]){
         //codificar el resultado utilizando json
         echo json_encode($rspta);
     break;
+
+    case 'selectJB':
+
+        $rspta = $usuario->listarJefesDeBases();
+
+        while($reg = $rspta->fetch_object()){
+            echo '<option value=' . $reg->idusuario . '>' . $reg->nombre . '</option>';
+        }
+    break;
     
     case 'selectCuadrilla':
         require_once "../modelos/Cuadrilla.php";

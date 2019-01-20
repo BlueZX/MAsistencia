@@ -14,6 +14,11 @@ function init(){
         $("#idcuadrilla").html(r);
         $("#idcuadrilla").selectpicker('refresh');
     });
+
+    $.post("../ajax/usuario.php?op=selectJB", function(r){
+        $("#idjefebase").html(r);
+        $("#idjefebase").selectpicker('refresh');
+    });
     $("#imagenmuestra").hide();
 
     //SE MUESTRAN LOS PERMISOS

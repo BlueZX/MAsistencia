@@ -9,6 +9,7 @@ if(!isset($_SESSION["nombre"])){
 else{
 
 $id= $_SESSION["idcuadrilla"];
+$tipo = $_SESSION["kind"];
 
 require 'header.php';
 ?>
@@ -30,6 +31,8 @@ require 'header.php';
                     <div class="panel-body table-responsive" id="UsuariosPorConfirmar">
                         <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                         <input type="hidden" name="idcuadrilla" id="idcuadrilla" value="<?php echo $id; ?>"> <!-- mando el idcuadrilla al metodo confirmar.js y el valor es el recibido en la varibale $id por el metodo SESSION.-->
+                        <input type="hidden" name="tipo" id="tipo" value="<?php echo $tipo; ?>">
+                        <input type="hidden" name="idj" id="idj" value="<?php echo $_SESSION['idusuario']; ?>">
                           <thead>
                             <th>Foto</th>
                             <th>Nombre</th>

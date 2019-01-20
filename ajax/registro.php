@@ -104,10 +104,17 @@ switch($_GET["op"])
     case 'confirmar': 
         
         $aux = $_GET['idcuadrilla'];
+        $tipo = $_GET['tipo'];
         require_once '../modelos/Cuadrilla.php';
-
+        
          $cuadrilla= new Cuadrilla();
-         $rpst = $cuadrilla->listarporConfirmar($aux);
+
+         if($tipo == 3){
+            $rpst = $cuadrilla->listarporConfirmarJefeCuadrilla($_GET['id']);
+         }else if($tipo == 2){
+            $rpst = $cuadrilla->listarporConfirmar($aux);
+         }
+
          $data2 = Array();
 
           while($reg=$rpst->fetch_object())
