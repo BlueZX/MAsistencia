@@ -161,6 +161,7 @@ switch($_GET["op"]){
             $_SESSION['rut'] = $fetch->rut;
             $_SESSION['idcuadrilla'] = $fetch->idcuadrilla;
             $_SESSION['kind'] = $fetch->kind;
+            //$_SESSION['idjb'] = $fetch->idjefebase;
             
             $marcados = $usuario->listarMarcados($fetch->idusuario);
 

@@ -178,15 +178,24 @@ if(strlen(session_id()) < 1)
             if($_SESSION ['tucuadrilla']==1){
               echo '<li class="treeview">
                       <a href="#">
-                        <i class="fa fa-child"></i>
-                        <span>Tu Cuadrilla</span>
-                        <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-child"></i>';
+
+                        if($_SESSION ['kind']!=3){
+                          echo '<span>Tu Cuadrilla</span>';
+                        }else{
+                          echo '<span>Tus jefes de cuadrilla</span>';
+                        }
+                        echo '<i class="fa fa-angle-left pull-right"></i>
                       </a>
                       <ul class="treeview-menu">
-                        <li><a href="confirmar.php"><i class="fa fa-circle-o"></i> Ver por Confirmar</a></li>
-                        <li><a href="emergencia.php"><i class="fa fa-circle-o"></i> Estado de Emegergencia</a></li>
-                      </ul>
-                    </li> ';
+                        <li><a href="confirmar.php"><i class="fa fa-circle-o"></i> Ver por Confirmar</a></li>';
+
+                        if($_SESSION ['kind']!=3){
+                          echo '<li><a href="emergencia.php"><i class="fa fa-circle-o"></i> Estado de Emergencia</a></li>';
+                        }
+
+                        
+                        echo '</ul></li>';
             }
             ?>
 
@@ -210,12 +219,12 @@ if(strlen(session_id()) < 1)
 
                                   
             
-            <!--<li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
+            <li>
+              <a href="perfil.php">
+                <i class="fa fa-info-circle"></i> <span>Mis datos</span>
+                <small class="label pull-right bg-yellow">editar</small>
               </a>
-            </li> -->
+            </li>
                         
           </ul>
         </section>

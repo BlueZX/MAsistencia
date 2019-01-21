@@ -45,7 +45,11 @@ if($_SESSION['escritorio']==1){
 
   require_once "../modelos/Cuadrilla.php";
   $cuadrilla = new Cuadrilla();
-  $l_cuadrilla = $cuadrilla->listarCuadrilla($_SESSION['idcuadrilla']);
+  if($_SESSION['kind'] < 3){
+    $l_cuadrilla = $cuadrilla->listarCuadrilla($_SESSION['idcuadrilla']);
+  }else{
+    $l_cuadrilla = $cuadrilla->listarJefeCuadrilla($id);
+  }
   $miembros = '';
 
   while($lista_c = $l_cuadrilla->fetch_object()){
@@ -63,11 +67,17 @@ if($_SESSION['escritorio']==1){
         <!-- Main content -->
         <section class="content">
             <div class="row">
-              <?php if($_SESSION['kind'] != 3) { ?>
+              <?php if($_SESSION['kind'] != 4) { ?>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Mi cuadrilla</h1>
+                          <?php
+                          if($_SESSION['kind'] < 3){
+                            echo '<h1 class="box-title">Mi cuadrilla</h1>';
+                          }else{
+                            echo '<h1 class="box-title">Mis jefes de cuadrillas</h1>';
+                          }
+                          ?>
                         <div class="box-tools pull-right">
                         </div>
                     </div>
