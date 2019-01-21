@@ -15,8 +15,9 @@ $direccion=isset($_POST["direccion"]) ? limpiarCadena($_POST["direccion"]):"";
 $numero=isset($_POST["numero"]) ? limpiarCadena($_POST["numero"]):"";
 $status=isset($_POST["status"]) ? limpiarCadena($_POST["status"]):1;
 $kind=isset($_POST["kind"]) ? limpiarCadena($_POST["kind"]):1;
-$idcuadrilla=isset($_POST["idcuadrilla"]) ? limpiarCadena($_POST["idcuadrilla"]):1;
+$idcuadrilla=isset($_POST["idcuadrilla"]) ? limpiarCadena($_POST["idcuadrilla"]):0;
 $permisos=isset($_POST['permiso']) ? $_POST['permiso']:[];
+$idjefebase=isset($_POST["idjefebase"]) ? limpiarCadena($_POST["idjefebase"]):0;
 
 switch($_GET["op"]){
     case 'guardaryeditar':
@@ -36,12 +37,12 @@ switch($_GET["op"]){
         $clavehash=hash("SHA256",$password);
 
         if (empty($idusuario)){
-            $rspta=$usuario->insertar($nombre,$rut,$clavehash,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $permisos);
+            $rspta=$usuario->insertar($nombre,$rut,$clavehash,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $permisos, $idjefebase);
             echo $rspta ? "Usuario registrado": "No se pudo registrar todos los datos del usuario";
 
         }
         else{
-            $rspta=$usuario->editar($idusuario,$nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $permisos);
+            $rspta=$usuario->editar($idusuario,$nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $permisos, $idjefebase);
             echo $rspta ? "Usuario actualizado": "Usuario no se pudo actualizar";
         }
     break;

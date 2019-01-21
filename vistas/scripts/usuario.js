@@ -32,6 +32,7 @@ function init(){
 function limpiar(){
     $("#idusuario").val("");
     $("#idcuadrilla").val("");
+    $("#idjefebase").val("");
     $("#nombre").val("");
     $("#password").val("");
     $("#direccion").val("");
@@ -89,6 +90,12 @@ function listar(){
 }
 
 function guardaryeditar(e){
+
+    $("#idjefebase").prop('disabled', false);
+    $("#idcuadrilla").prop('disabled', false);
+    $("#idjefebase").selectpicker('refresh');
+    $("#idcuadrilla").selectpicker('refresh');
+    
     //CON ESTO NO SE ACTIVARA LA ACCION PREDERTMINADA DEL EVENTO
     e.preventDefault();
     $("#btnGuardar").prop("disabled",true);
@@ -121,6 +128,8 @@ function mostrar(idusuario){
         $("#direccion").val(data.direccion);
         $("#rut").val(data.rut); 
         $("#numero").val(data.numero); 
+        $("#idjefebase").val(data.idjefebase);
+        $("#idjefebase").selectpicker('refresh'); 
         $("#idcuadrilla").val(data.idcuadrilla); 
         $("#idcuadrilla").selectpicker('refresh'); 
         $("#fechaN").val(data.fechaN);
@@ -161,3 +170,20 @@ function activar(idusuario){
 }
 
 init();
+
+$("#kind").change(function() {
+    if($("#kind").val() == 3){
+        $("#idcuadrilla").val(0);
+        //$("#idjefebase option[value='']").attr('selected', true)
+        $("#idjefebase").val(null);
+        $("#idcuadrilla").prop('disabled', 'disabled');
+        $("#idjefebase").prop('disabled', 'disabled');
+        $("#idjefebase").selectpicker('refresh');
+        $("#idcuadrilla").selectpicker('refresh');
+    }else{
+        $("#idjefebase").prop('disabled', false);
+        $("#idcuadrilla").prop('disabled', false);
+        $("#idjefebase").selectpicker('refresh');
+        $("#idcuadrilla").selectpicker('refresh');
+    }
+});
