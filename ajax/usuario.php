@@ -42,7 +42,7 @@ switch($_GET["op"]){
 
         }
         else{
-            $rspta=$usuario->editar($idusuario,$nombre,$rut,$password,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $permisos, $idjefebase);
+            $rspta=$usuario->editar($idusuario,$nombre,$rut,$clavehash,$image,$email,$fechaN,$direccion,$numero,$status,$kind,$idcuadrilla, $permisos, $idjefebase);
             echo $rspta ? "Usuario actualizado": "Usuario no se pudo actualizar";
         }
     break;

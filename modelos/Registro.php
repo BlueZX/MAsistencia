@@ -47,7 +47,7 @@ class Registro
 
     public function listar()
     {
-        $sql = "SELECT u.nombre, u.rut, r.fecha, r.status, r.idregistro FROM registro r INNER JOIN usuario u ON r.idusuario=u.idusuario";
+        $sql = "SELECT u.nombre, u.rut, r.fecha, r.status, r.idregistro FROM registro r INNER JOIN usuario u ON r.idusuario=u.idusuario WHERE u.status='1'";
         return ejecutarConsulta($sql); // devuelve todo lo de registro
     }
 

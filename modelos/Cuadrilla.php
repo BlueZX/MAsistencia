@@ -48,13 +48,13 @@ class Cuadrilla
     public function listarCuadrilla($idcuadrilla)
     {
         $fecha_hoy = date('Y') . "-" . date('m') . "-" . date('d');
-        $sql = "SELECT u.image, u.nombre, u.rut, u.kind, r.status  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla INNER JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla' AND r.fecha='$fecha_hoy' ORDER BY u.kind DESC";
+        $sql = "SELECT u.image, u.nombre, u.rut, u.kind, r.status  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla INNER JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla' AND r.fecha='$fecha_hoy' AND u.status='1' ORDER BY u.kind DESC";
         return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
     }
 
     public function listarporConfirmar($idcuadrilla)
     {
-        $sql = "SELECT u.image, u.nombre, u.rut, r.fecha, u.kind, r.status, r.idregistro  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla LEFT JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla' AND r.status='2' AND u.kind='1'";
+        $sql = "SELECT u.image, u.nombre, u.rut, r.fecha, u.kind, r.status, r.idregistro  FROM cuadrilla c INNER JOIN usuario u ON c.idcuadrilla=u.idcuadrilla LEFT JOIN registro r ON r.idusuario=u.idusuario WHERE c.idcuadrilla='$idcuadrilla' AND r.status='2' AND u.kind='1' AND u.status='1'";
         return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
     }
 
@@ -64,7 +64,7 @@ class Cuadrilla
     }
 
     public function listarporConfirmarJefeCuadrilla($id){
-        $sql = "SELECT u.image, u.nombre, u.rut, r.fecha, u.kind, r.status, r.idregistro  FROM usuario u LEFT JOIN registro r ON r.idusuario=u.idusuario WHERE u.idjefebase='$id' AND r.status='2' AND u.kind='2'";
+        $sql = "SELECT u.image, u.nombre, u.rut, r.fecha, u.kind, r.status, r.idregistro  FROM usuario u LEFT JOIN registro r ON r.idusuario=u.idusuario WHERE u.idjefebase='$id' AND r.status='2' AND u.kind='2' AND u.status='1'";
         return ejecutarConsulta($sql); // devuelve todo lo de cuadrilla
     }
 
