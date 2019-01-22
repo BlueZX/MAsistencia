@@ -123,8 +123,9 @@ switch($_GET["op"])
             "0"=>"<img src='../files/usuarios/".$reg->image."' height='50px' width='50px'>",
             "1"=>$reg->nombre,
             "2"=>$reg->rut,
-            "3"=>estadoAsistencia($reg->status),
-            "4"=>estadoBotoness($reg->status,$reg->idregistro)
+            "3"=>$reg->fecha,
+            "4"=>estadoAsistencia($reg->status),
+            "5"=>estadoBotoness($reg->status,$reg->idregistro)
              );
           }
         $results = array(

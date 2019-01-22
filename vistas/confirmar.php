@@ -37,6 +37,7 @@ require 'header.php';
                             <th>Foto</th>
                             <th>Nombre</th>
                             <th>Rut</th>
+                            <th>Fecha</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                           </thead>
@@ -45,6 +46,7 @@ require 'header.php';
                             <th>Foto</th>
                             <th>Nombre</th>
                             <th>Rut</th>
+                            <th>Fecha</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                           </tfoot>
